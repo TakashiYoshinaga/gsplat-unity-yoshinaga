@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added optional global depth sorting across multiple GsplatRenderer instances, allowing splats from different renderers to interleave correctly in a single draw call. An option `Enable Global Sort` is added to `Project Settings > Gsplat` to enable this feature. Global sorting only supports assets with Spark compression. The package falls back to the per-renderer pipeline when any active `GsplatRenderer` using an uncompressed asset. ([#28](https://github.com/wuyize25/gsplat-unity/pull/28) by [@KeirRice](https://github.com/KeirRice))
 
+### Fixed
+
+- Fixed PLY header parsing to count only vertex element properties. The package now supports PLY files exported by Apple's [ml-sharp](https://github.com/apple/ml-sharp). ([#33](https://github.com/wuyize25/gsplat-unity/pull/33) by [@TakashiYoshinaga](https://github.com/TakashiYoshinaga))
+
 ## [1.3.0] - 2026-05-23
 
 ### Added
