@@ -15,6 +15,7 @@ namespace Gsplat.Editor
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("Compression"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("SourceCoordinates"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("OpacityPruneThreshold"));
 
             serializedObject.ApplyModifiedProperties();
             ApplyRevertGUI();
