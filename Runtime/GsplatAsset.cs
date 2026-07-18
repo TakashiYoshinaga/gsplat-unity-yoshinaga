@@ -140,8 +140,8 @@ namespace Gsplat
     public abstract class GsplatAsset : ScriptableObject
     {
         public uint SplatCount;
-        // Splat count of the source file before import-time pruning; equals SplatCount when nothing was pruned.
-        [HideInInspector] public uint SourceSplatCount;
+        // Pruned splat count during import time; SplatCount + PrunedSplatCount = splat count of the source file.
+        public uint PrunedSplatCount;
         public byte SHBands; // 0, 1, 2, 3, or 4
         public Bounds Bounds;
         public abstract CompressionMode Compression { get; }

@@ -41,12 +41,13 @@ namespace Gsplat
             asset.LoadFromPlyBytes(bytes, null, SourceCoordinates, OpacityPruneThreshold);
 
             GetComponent<GsplatRenderer>().GsplatAsset = asset;
-            var pruned = asset.SourceSplatCount - asset.SplatCount;
+            var pruned = asset.PrunedSplatCount;
+            var sourceSplatCount = asset.SplatCount + asset.PrunedSplatCount;
             Debug.Log($"Loaded {asset.SplatCount:N0} splats (SH bands {asset.SHBands}) " +
                       $"from {bytes.Length:N0} bytes via LoadFromPlyBytes" +
                       (pruned > 0
-                          ? $", pruned {pruned:N0} / {asset.SourceSplatCount:N0} splats " +
-                            $"({pruned * 100.0 / asset.SourceSplatCount:F1}%) below opacity {OpacityPruneThreshold}"
+                          ? $", pruned {pruned:N0} / {sourceSplatCount:N0} splats " +
+                            $"({pruned * 100.0 / sourceSplatCount:F1}%) below opacity {OpacityPruneThreshold}"
                           : ""));
         }
     }

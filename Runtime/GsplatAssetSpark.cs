@@ -188,7 +188,7 @@ namespace Gsplat
             var plyInfo = new PlyHeaderInfo(fs);
             var shCoeffs = plyInfo.SHPropertyCount / 3;
             SplatCount = plyInfo.VertexCount;
-            SourceSplatCount = plyInfo.VertexCount;
+            var sourceSplatCount = plyInfo.VertexCount;
             SHBands = GsplatUtils.CalcSHBandsFromSHPropertyCount(plyInfo.SHPropertyCount);
 
             if (SHBands > 4 || GsplatUtils.SHBandsToCoefficientCount(SHBands) * 3 != plyInfo.SHPropertyCount)
@@ -276,6 +276,7 @@ namespace Gsplat
             if (w != SplatCount)
             {
                 SplatCount = w;
+                PrunedSplatCount = sourceSplatCount - SplatCount;
                 Array.Resize(ref PackedSplats, (int)w);
                 if (SHBands >= 1)
                     Array.Resize(ref PackedSH1, (int)w * 2);

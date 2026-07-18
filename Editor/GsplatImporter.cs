@@ -99,12 +99,13 @@ namespace Gsplat.Editor
                 swTotal?.Stop();
             }
 
-            if (gsplatAsset.SourceSplatCount > gsplatAsset.SplatCount)
+            if (gsplatAsset.PrunedSplatCount > 0)
             {
-                var removed = gsplatAsset.SourceSplatCount - gsplatAsset.SplatCount;
+                var removed = gsplatAsset.PrunedSplatCount;
+                var sourceSplatCount = gsplatAsset.SplatCount + gsplatAsset.PrunedSplatCount;
                 UnityEngine.Debug.Log(
-                    $"[Gsplat Import] {Path.GetFileName(ctx.assetPath)}: pruned {removed:N0} / {gsplatAsset.SourceSplatCount:N0} splats " +
-                    $"({removed * 100.0 / gsplatAsset.SourceSplatCount:F1}%) below opacity {OpacityPruneThreshold}");
+                    $"[Gsplat Import] {Path.GetFileName(ctx.assetPath)}: pruned {removed:N0} / {sourceSplatCount:N0} splats " +
+                    $"({removed * 100.0 / sourceSplatCount:F1}%) below opacity {OpacityPruneThreshold}");
             }
 
             ctx.AddObjectToAsset("gsplatAsset", gsplatAsset);
